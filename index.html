@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Political Strategy Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- WELCOME SCREEN -->
+  <div id="welcome-screen" class="screen active">
+    <div class="welcome-bg"></div>
+    <div class="welcome-content">
+      <div class="game-logo">🏛️</div>
+      <h1 class="game-title">POLITICAL STRATEGY</h1>
+      <p class="game-tagline">Lead. Decide. Conquer.</p>
+      <div class="date-badge" id="current-date"></div>
+      <div class="popularity-section">
+        <h3 class="section-label">CURRENT PARTY STANDINGS</h3>
+        <div class="popularity-bars" id="popularity-bars"></div>
+      </div>
+      <button class="btn-primary pulse" onclick="showScreen('party-select-screen')">▶ START GAME</button>
+    </div>
+  </div>
+
+  <!-- PARTY SELECT SCREEN -->
+  <div id="party-select-screen" class="screen">
+    <div class="screen-header">
+      <h2>Choose Your Party</h2>
+      <p>Select the party you will lead to victory</p>
+    </div>
+    <div class="party-grid" id="party-grid"></div>
+  </div>
+
+  <!-- CHARACTER SCREEN -->
+  <div id="character-screen" class="screen">
+    <div class="character-wrapper" id="character-wrapper"></div>
+  </div>
+
+  <!-- MINISTER SCREEN -->
+  <div id="minister-screen" class="screen">
+    <div class="minister-header">
+      <h2>⚙️ Form Your Government</h2>
+      <div class="minister-progress-wrap">
+        <div class="minister-step-label" id="minister-step-label"></div>
+        <div class="minister-progress-bar">
+          <div class="minister-progress-fill" id="minister-progress-fill"></div>
+        </div>
+      </div>
+      <div class="live-score-mini" id="live-score-mini"></div>
+    </div>
+    <div class="minister-body" id="minister-body"></div>
+  </div>
+
+  <!-- SCENARIO SCREEN -->
+  <div id="scenario-screen" class="screen">
+    <div class="scenario-header">
+      <div class="scenario-meta" id="scenario-meta"></div>
+      <div class="live-scoreboard" id="live-scoreboard"></div>
+    </div>
+    <div class="scenario-body" id="scenario-body"></div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="result-screen" class="screen">
+    <div class="result-wrapper" id="result-wrapper"></div>
+  </div>
+
+  <!-- FLOATING SCORE POPUP -->
+  <div class="score-popup" id="score-popup"></div>
+
+  <script src="data.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
