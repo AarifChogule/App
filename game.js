@@ -118,7 +118,9 @@ function renderCharacterScreen() {
   document.getElementById('character-wrapper').innerHTML = `
     <p class="char-top-label">YOU ARE NOW LEADING</p>
     <div class="char-card" style="--pc:${p.color}">
-      <span class="char-avatar">${c.avatar}</span>
+      <div class="char-svg-wrap">
+        ${CHARACTERS[p.id]}
+      </div>
       <div class="char-name">${c.name}</div>
       <div class="char-title">${c.title}</div>
       <div class="char-party-badge" style="background:${p.color}">${p.name} — ${p.fullName}</div>

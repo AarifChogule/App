@@ -99,6 +99,20 @@ html, body { height: 100%; font-family: 'Segoe UI', system-ui, sans-serif; backg
 .char-trait { background: var(--card2); border: 1px solid; border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; }
 .char-quote { font-style: italic; color: var(--muted); font-size: 14px; border-left: 3px solid var(--party-color); padding-left: 16px; text-align: left; }
 
+/* SVG Character illustration */
+.char-svg-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.char-svg-wrap svg {
+  width: 200px;
+  height: 240px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
+}
+.char-svg-wrap svg:hover { transform: scale(1.04); }
+
 /* Diamond info box on character screen */
 .diamond-info-box { display: flex; align-items: flex-start; gap: 14px; background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.3); border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; text-align: left; font-size: 14px; line-height: 1.6; color: #c9d1d9; }
 .diamond-info-icon { font-size: 28px; flex-shrink: 0; }
