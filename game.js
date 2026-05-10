@@ -86,7 +86,7 @@ function renderPartyGrid() {
     card.className = 'party-card';
     card.style.setProperty('--pc', p.color);
     card.innerHTML = `
-      <div class="party-card-emoji">${p.emoji}</div>
+      <div class="party-card-char">${CHARACTERS[p.id]}</div>
       <div class="party-card-name" style="color:${p.color}">${p.name}</div>
       <div class="party-card-full">${p.fullName}</div>
       <div class="party-card-ideology">${p.ideology}</div>

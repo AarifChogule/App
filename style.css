@@ -76,6 +76,9 @@ html, body { height: 100%; font-family: 'Segoe UI', system-ui, sans-serif; backg
 .party-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--pc); }
 .party-card:hover { border-color: var(--pc); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
 .party-card-emoji { font-size: 36px; margin-bottom: 12px; }
+.party-card-char { display: flex; justify-content: center; margin-bottom: 10px; }
+.party-card-char svg { width: 130px; height: 156px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); transition: transform 0.3s ease; }
+.party-card:hover .party-card-char svg { transform: scale(1.06) translateY(-4px); }
 .party-card-name { font-size: 22px; font-weight: 900; letter-spacing: 2px; margin-bottom: 4px; }
 .party-card-full { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
 .party-card-ideology { display: inline-block; background: var(--card2); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--muted); margin-bottom: 16px; border: 1px solid var(--border); }
