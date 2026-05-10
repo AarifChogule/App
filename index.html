@@ -17,7 +17,7 @@
       <p class="game-tagline">Lead. Decide. Conquer.</p>
       <div class="date-badge" id="current-date"></div>
       <div class="popularity-section">
-        <h3 class="section-label">CURRENT PARTY STANDINGS</h3>
+        <h3 class="section-label">ALL PARTIES START EQUAL — 25 POINTS EACH</h3>
         <div class="popularity-bars" id="popularity-bars"></div>
       </div>
       <button class="btn-primary pulse" onclick="showScreen('party-select-screen')">▶ START GAME</button>
@@ -28,7 +28,7 @@
   <div id="party-select-screen" class="screen">
     <div class="screen-header">
       <h2>Choose Your Party</h2>
-      <p>Select the party you will lead to victory</p>
+      <p>Select the party you will lead to victory — others will be controlled by AI</p>
     </div>
     <div class="party-grid" id="party-grid"></div>
   </div>
@@ -62,12 +62,24 @@
     <div class="scenario-body" id="scenario-body"></div>
   </div>
 
+  <!-- DEBATE SCREEN -->
+  <div id="debate-screen" class="screen">
+    <div class="debate-header">
+      <div class="debate-title-row">
+        <span class="debate-live-badge">🔴 LIVE DEBATE</span>
+        <div id="debate-header-info"></div>
+      </div>
+      <div class="live-scoreboard" id="debate-scoreboard"></div>
+    </div>
+    <div class="debate-body-wrap" id="debate-body"></div>
+  </div>
+
   <!-- RESULT SCREEN -->
   <div id="result-screen" class="screen">
     <div class="result-wrapper" id="result-wrapper"></div>
   </div>
 
-  <!-- FLOATING SCORE POPUP -->
+  <!-- FLOATING ELEMENTS -->
   <div class="score-popup" id="score-popup"></div>
 
   <script src="data.js"></script>
