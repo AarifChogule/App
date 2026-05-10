@@ -13,7 +13,7 @@ const state = {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('current-date').textContent =
     new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  renderPopularityBars();
+  renderWelcomeChars();
   renderPartyGrid();
 });
 
@@ -58,24 +58,17 @@ function updateDiamondCounter() {
 }
 
 // ─── WELCOME ──────────────────────────────────────────────────────────────────
-function renderPopularityBars() {
-  const container = document.getElementById('popularity-bars');
+function renderWelcomeChars() {
+  const container = document.getElementById('welcome-chars');
   GAME_DATA.parties.forEach(p => {
     container.innerHTML += `
-      <div class="pop-bar-item">
-        <div class="pop-bar-label">
-          <span class="party-tag" style="background:${p.color}">${p.name}</span>
-          <span style="font-size:13px;color:#8b949e">${p.fullName}</span>
-        </div>
-        <div class="pop-bar-track">
-          <div class="pop-bar-fill" style="background:${p.color}" data-w="25"></div>
-          <span class="pop-bar-pct">25%</span>
-        </div>
+      <div class="welcome-char-col">
+        <div class="welcome-char-svg">${CHARACTERS[p.id]}</div>
+        <div class="welcome-char-name" style="color:${p.color}">${p.name}</div>
+        <div class="welcome-char-full">${p.fullName}</div>
+        <div class="welcome-char-motto">"${p.motto}"</div>
       </div>`;
   });
-  setTimeout(() => {
-    document.querySelectorAll('.pop-bar-fill').forEach(b => b.style.width = '25%');
-  }, 400);
 }
 
 // ─── PARTY SELECT ─────────────────────────────────────────────────────────────
@@ -177,7 +170,6 @@ function renderMinisterStep() {
               <div class="candidate-role" style="color:${p.color}">${c.role}</div>
               <div class="candidate-detail">${c.detail}</div>
             </div>
-            <div class="candidate-approval">+${c.approval} pts</div>
           </div>`).join('')}
         <div class="candidate-card premium-card ${canAfford ? '' : 'cant-afford'}"
              onclick="${canAfford ? 'pickMinister(3, true)' : 'showCantAfford()'}" id="cand-3">
@@ -188,7 +180,6 @@ function renderMinisterStep() {
             <div class="candidate-detail">${premC.detail}</div>
           </div>
           <div class="candidate-approval diamond-pts">
-            +${premC.approval} pts<br>
             <small style="color:${canAfford ? '#f0b429' : '#666'}">💎 6 diamonds</small>
           </div>
         </div>
