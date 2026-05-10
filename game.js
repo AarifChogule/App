@@ -61,13 +61,22 @@ function updateDiamondCounter() {
 function renderWelcomeChars() {
   const container = document.getElementById('welcome-chars');
   GAME_DATA.parties.forEach(p => {
-    container.innerHTML += `
-      <div class="welcome-char-col">
-        <div class="welcome-char-svg">${CHARACTERS[p.id]}</div>
-        <div class="welcome-char-name" style="color:${p.color}">${p.name}</div>
-        <div class="welcome-char-full">${p.fullName}</div>
-        <div class="welcome-char-motto">"${p.motto}"</div>
-      </div>`;
+    const col = document.createElement('div');
+    col.className = 'welcome-char-col';
+
+    const svgWrap = document.createElement('div');
+    svgWrap.className = 'welcome-char-svg';
+    svgWrap.innerHTML = CHARACTERS[p.id];
+    col.appendChild(svgWrap);
+
+    const info = document.createElement('div');
+    info.innerHTML =
+      `<div class="welcome-char-name" style="color:${p.color}">${p.name}</div>` +
+      `<div class="welcome-char-full">${p.fullName}</div>` +
+      `<div class="welcome-char-motto">"${p.motto}"</div>`;
+    col.appendChild(info);
+
+    container.appendChild(col);
   });
 }
 
@@ -78,16 +87,26 @@ function renderPartyGrid() {
     const card = document.createElement('div');
     card.className = 'party-card';
     card.style.setProperty('--pc', p.color);
-    card.innerHTML = `
-      <div class="party-card-char">${CHARACTERS[p.id]}</div>
-      <div class="party-card-name" style="color:${p.color}">${p.name}</div>
-      <div class="party-card-full">${p.fullName}</div>
-      <div class="party-card-ideology">${p.ideology}</div>
-      <div class="party-card-pop">
-        <span style="font-size:12px;color:#8b949e">Starting Score</span>
-        <div class="party-card-pop-bar"><div class="party-card-pop-fill" data-w="25" style="width:0%;background:${p.color}"></div></div>
-        <span class="party-card-pop-num" style="color:${p.color}">25</span>
-      </div>`;
+
+    // Insert SVG character separately to avoid innerHTML parsing issues
+    const charDiv = document.createElement('div');
+    charDiv.className = 'party-card-char';
+    charDiv.innerHTML = CHARACTERS[p.id];
+    card.appendChild(charDiv);
+
+    // Rest of card info
+    const info = document.createElement('div');
+    info.innerHTML =
+      `<div class="party-card-name" style="color:${p.color}">${p.name}</div>` +
+      `<div class="party-card-full">${p.fullName}</div>` +
+      `<div class="party-card-ideology">${p.ideology}</div>` +
+      `<div class="party-card-pop">` +
+        `<span style="font-size:12px;color:#8b949e">Starting Score</span>` +
+        `<div class="party-card-pop-bar"><div class="party-card-pop-fill" data-w="25" style="width:0%;background:${p.color}"></div></div>` +
+        `<span class="party-card-pop-num" style="color:${p.color}">25</span>` +
+      `</div>`;
+    card.appendChild(info);
+
     card.onclick = () => selectParty(p.id);
     grid.appendChild(card);
   });
@@ -108,27 +127,52 @@ function selectParty(id) {
 function renderCharacterScreen() {
   const p = state.party;
   const c = p.character;
-  document.getElementById('character-wrapper').innerHTML = `
-    <p class="char-top-label">YOU ARE NOW LEADING</p>
-    <div class="char-card" style="--pc:${p.color}">
-      <div class="char-svg-wrap">
-        ${CHARACTERS[p.id]}
-      </div>
-      <div class="char-name">${c.name}</div>
-      <div class="char-title">${c.title}</div>
-      <div class="char-party-badge" style="background:${p.color}">${p.name} — ${p.fullName}</div>
-      <p class="char-desc">${c.description}</p>
-      <div class="char-traits">${c.traits.map(t => `<span class="char-trait" style="color:${p.color};border-color:${p.color}40">${t}</span>`).join('')}</div>
-      <div class="char-quote">${c.quote}</div>
-    </div>
-    <div class="diamond-info-box">
-      <div class="diamond-info-icon">💎</div>
-      <div>
-        <strong>You start with 30 Diamonds</strong><br>
-        <span>Spend 6 diamonds to unlock premium ministers or make an excellent decision in any scenario or debate. Use them wisely — you only have 5 chances.</span>
-      </div>
-    </div>
-    <button class="btn-primary" onclick="startMinisters()">⚙️ FORM YOUR GOVERNMENT →</button>`;
+
+  const wrapper = document.getElementById('character-wrapper');
+  wrapper.innerHTML = '';
+
+  const label = document.createElement('p');
+  label.className = 'char-top-label';
+  label.textContent = 'YOU ARE NOW LEADING';
+  wrapper.appendChild(label);
+
+  const card = document.createElement('div');
+  card.className = 'char-card';
+  card.style.setProperty('--pc', p.color);
+
+  const svgWrap = document.createElement('div');
+  svgWrap.className = 'char-svg-wrap';
+  svgWrap.innerHTML = CHARACTERS[p.id];
+  card.appendChild(svgWrap);
+
+  const traitsHTML = c.traits.map(t =>
+    `<span class="char-trait" style="color:${p.color};border-color:${p.color}40">${t}</span>`
+  ).join('');
+
+  const cardInfo = document.createElement('div');
+  cardInfo.innerHTML =
+    `<div class="char-name">${c.name}</div>` +
+    `<div class="char-title">${c.title}</div>` +
+    `<div class="char-party-badge" style="background:${p.color}">${p.name} — ${p.fullName}</div>` +
+    `<p class="char-desc">${c.description}</p>` +
+    `<div class="char-traits">${traitsHTML}</div>` +
+    `<div class="char-quote">${c.quote}</div>`;
+  card.appendChild(cardInfo);
+  wrapper.appendChild(card);
+
+  const diamondBox = document.createElement('div');
+  diamondBox.className = 'diamond-info-box';
+  diamondBox.innerHTML =
+    `<div class="diamond-info-icon">💎</div>` +
+    `<div><strong>You start with 30 Diamonds</strong><br>` +
+    `<span>Spend 6 diamonds to unlock premium ministers or make an excellent decision in any scenario or debate. Use them wisely — you only have 5 chances.</span></div>`;
+  wrapper.appendChild(diamondBox);
+
+  const btn = document.createElement('button');
+  btn.className = 'btn-primary';
+  btn.textContent = '⚙️ FORM YOUR GOVERNMENT →';
+  btn.onclick = startMinisters;
+  wrapper.appendChild(btn);
 }
 
 // ─── MINISTERS ────────────────────────────────────────────────────────────────
