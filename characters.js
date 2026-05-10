@@ -3,13 +3,6 @@ const CHARACTERS = {
 
   // BJE — Strong Old Man, white hair & beard, military bearing
   bje: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
-    <defs>
-      <radialGradient id="bjeBg" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#FF6B3518"/>
-        <stop offset="100%" stop-color="#00000000"/>
-      </radialGradient>
-    </defs>
-    <ellipse cx="100" cy="130" rx="95" ry="120" fill="url(#bjeBg)"/>
 
     <!-- Military jacket -->
     <rect x="18" y="158" width="164" height="102" fill="#1E3A1E" rx="8"/>
@@ -105,13 +98,6 @@ const CHARACTERS = {
 
   // Congrass — Young nerdy guy, glasses, messy hair, eager
   congrass: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
-    <defs>
-      <radialGradient id="congBg" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#4A90D918"/>
-        <stop offset="100%" stop-color="#00000000"/>
-      </radialGradient>
-    </defs>
-    <ellipse cx="100" cy="130" rx="95" ry="120" fill="url(#congBg)"/>
 
     <!-- Body: Blue collared shirt -->
     <rect x="28" y="162" width="144" height="98" fill="#2255AA" rx="8"/>
@@ -209,13 +195,6 @@ const CHARACTERS = {
 
   // APA — Historical background, Gandhi-style, dignified
   apa: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
-    <defs>
-      <radialGradient id="apaBg" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#9B59B618"/>
-        <stop offset="100%" stop-color="#00000000"/>
-      </radialGradient>
-    </defs>
-    <ellipse cx="100" cy="130" rx="95" ry="120" fill="url(#apaBg)"/>
 
     <!-- Body: White Nehru/Khadi jacket -->
     <rect x="22" y="158" width="156" height="102" fill="#F2F0E8" rx="8"/>
@@ -313,13 +292,6 @@ const CHARACTERS = {
 
   // SHS — People's favorite, big warm smile, garland, humble
   shs: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
-    <defs>
-      <radialGradient id="shsBg" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#27AE6018"/>
-        <stop offset="100%" stop-color="#00000000"/>
-      </radialGradient>
-    </defs>
-    <ellipse cx="100" cy="130" rx="95" ry="120" fill="url(#shsBg)"/>
 
     <!-- Body: Simple cream/off-white kurta -->
     <rect x="20" y="160" width="160" height="100" fill="#F5ECD8" rx="8"/>
